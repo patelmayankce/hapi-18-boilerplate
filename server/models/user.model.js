@@ -16,7 +16,7 @@ const modelName = 'user'
 
 const errorHelper = require('@utilities/error-helper')
 
-const prontoConn = require('@plugins/mongoose.plugin').plugin.prontoConn()
+const dbConn = require('@plugins/mongoose.plugin').plugin.dbConn()
 
 const UserSchema = new Schema(
   {
@@ -160,4 +160,4 @@ UserSchema.statics = {
   }
 }
 
-exports.schema = prontoConn.model(modelName, UserSchema)
+exports.schema = dbConn.model(modelName, UserSchema)

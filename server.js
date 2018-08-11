@@ -3,16 +3,22 @@
 require('module-alias/register')
 
 const Glue = require('glue')
+const serverConfig = require('./config/manifest')
 
+// this is the line we mention in manifest.js
 // relativeTo parameter should be defined here
 const options = {
+  ...serverConfig.options,
   relativeTo: __dirname
 }
 
 // Start server
 const startServer = async () => {
   try {
-    const server = await Glue.compose(options)
+    const server = await Glue.compose(
+      serverConfig.manifest,
+      options
+    )
 
     await server.start()
     console.log(`Server listening on ${server.info.uri}`)
