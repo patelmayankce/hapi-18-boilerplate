@@ -29,7 +29,9 @@
   "keywords": [
     "hapi",
     "hapi17",
-    "boilerplate"
+    "boilerplate",
+    "starter-kit",
+    "hapi-boilerplate"
   ],
   "author": "Mayank Patel <patelmayankce@gmail.com>",
   "license": "ISC",
