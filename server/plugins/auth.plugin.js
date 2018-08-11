@@ -4,10 +4,16 @@ const config = require('config')
 exports.plugin = {
   async register(server, options) {
     const jwtValidate = async (decodedToken, request, h) => {
+      const User = require('@models/user.model').schema
+
       let credentials = {
         user: {}
       }
-      const isValid = true
+      let isValid = false
+      credentials.user = await User.findById(decodedToken.user._id)
+      if (credentials.user) {
+        isValid = true
+      }
       // Authentication Code will be here
       return {
         isValid,

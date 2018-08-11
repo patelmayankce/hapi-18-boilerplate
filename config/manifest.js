@@ -40,14 +40,15 @@ let swaggerOptions = {
 const DEFAULT = 'default'
 
 let plugins = []
+const ENV = config.util.getEnv('NODE_ENV').trim()
 
-if (config.util.getEnv('NODE_ENV') !== DEFAULT) {
+if (ENV !== DEFAULT) {
   swaggerOptions.schemes = ['http']
   // swaggerOptions.schemes = ['https', 'http']
   swaggerOptions.host = 'productionurl.com'
   mongoose.set('debug', true)
 }
-if (config.util.getEnv('NODE_ENV') !== PRODUCTION) {
+if (ENV !== PRODUCTION) {
   plugins = [
     {
       plugin: 'inert'
@@ -90,10 +91,9 @@ plugins = plugins.concat([
     plugin: '@routes/root.route'
   }
 ])
-/**
+
 const routesOb = {
-  'auth.route': 'auth',
-  'user.route': 'user'
+  'auth.route': 'auth'
 }
 
 const routes = Object.keys(routesOb)
@@ -108,7 +108,7 @@ routes.forEach(r => {
     }
   ])
 })
- */
+
 exports.manifest = {
   server: {
     router: {
