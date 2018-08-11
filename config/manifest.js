@@ -87,7 +87,7 @@ plugins = plugins.concat([
     plugin: '@plugins/auth.plugin'
   },
   {
-    plugin: `@routes/root.route`
+    plugin: '@routes/root.route'
   }
 ])
 /**
