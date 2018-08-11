@@ -85,11 +85,13 @@ plugins = plugins.concat([
   {
     // if you need authentication then uncomment this plugin, and remove "auth: false" below
     plugin: '@plugins/auth.plugin'
+  },
+  {
+    plugin: `@routes/root.route`
   }
 ])
-
+/**
 const routesOb = {
-  'root.route': '',
   'auth.route': 'auth',
   'user.route': 'user'
 }
@@ -106,6 +108,7 @@ routes.forEach(r => {
     }
   ])
 })
+ */
 exports.manifest = {
   server: {
     router: {
