@@ -43,7 +43,14 @@ module.exports = {
           config: {
             auth: 'auth',
             plugins: {
-              policies: []
+              policies: [],
+              'hapi-swaggered': {
+                security: [
+                  {
+                    ApiKeyAuth: []
+                  }
+                ]
+              }
             },
             tags: ['api', 'Authentication'],
             description: 'me',

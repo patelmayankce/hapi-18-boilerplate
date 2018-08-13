@@ -15,37 +15,34 @@ const config = require('config')
 const mongoose = require('mongoose')
 const Config = JSON.parse(JSON.stringify(config))
 
-// Follow Doc: https://github.com/glennjones/hapi-swagger/blob/master/optionsreference.md
-let swaggerOptions = {
+// REF: https://github.com/z0mt3c/hapi-swaggered , https://github.com/z0mt3c/hapi-swaggered-ui
+let swaggeredOptions = {
   info: {
     title: 'Hapi-17-boilerplate',
     version: require('../package.json').version
   },
-  basePath: '/v1',
+  stripPrefix: '/v1',
   tags: [],
-  grouping: 'tags',
+  tagging: {
+    mode: 'tags'
+  },
   securityDefinitions: {
     ApiKeyAuth: {
       type: 'apiKey',
       name: 'Authorization',
       in: 'header'
     }
-  },
-  security: [
-    {
-      ApiKeyAuth: []
-    }
-  ]
+  }
 }
+
 const DEFAULT = 'default'
 
 let plugins = []
 const ENV = config.util.getEnv('NODE_ENV').trim()
 
 if (ENV !== DEFAULT) {
-  swaggerOptions.schemes = ['http']
-  // swaggerOptions.schemes = ['https', 'http']
-  swaggerOptions.host = 'productionurl.com'
+  swaggeredOptions.schemes = ['https', 'http']
+  swaggeredOptions.host = 'productionurl.com'
   mongoose.set('debug', true)
 }
 if (ENV !== PRODUCTION) {
@@ -57,8 +54,15 @@ if (ENV !== PRODUCTION) {
       plugin: 'vision'
     },
     {
-      plugin: 'hapi-swagger',
-      options: swaggerOptions
+      plugin: 'hapi-swaggered',
+      options: swaggeredOptions
+    },
+    {
+      plugin: 'hapi-swaggered-ui',
+      options: {
+        title: 'Hapi-17-boilerplate',
+        path: '/docs'
+      }
     }
   ]
 }

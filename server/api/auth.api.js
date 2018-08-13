@@ -179,7 +179,7 @@ module.exports = {
   me: {
     validate: {
       headers: Joi.object({
-        authorization: Joi.string().required()
+        authorization: Joi.string()
       }).options({
         allowUnknown: true
       })
