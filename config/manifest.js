@@ -63,6 +63,13 @@ if (ENV !== PRODUCTION) {
         title: 'Hapi-17-boilerplate',
         path: '/docs'
       }
+    },
+    {
+      plugin: 'hapi-dev-errors',
+      options: {
+        showErrors: process.env.NODE_ENV !== 'production',
+        toTerminal: true
+      }
     }
   ]
 }

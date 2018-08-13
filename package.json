@@ -49,6 +49,7 @@
     "hapi": "^17.5.2",
     "hapi-auth-basic": "^5.0.0",
     "hapi-auth-jwt2": "^8.1.0",
+    "hapi-dev-errors": "^3.1.0",
     "hapi-swaggered": "^3.0.3",
     "hapi-swaggered-ui": "^3.0.2",
     "inert": "^5.1.0",
