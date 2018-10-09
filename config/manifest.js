@@ -75,6 +75,27 @@ if (ENV !== PRODUCTION) {
 }
 plugins = plugins.concat([
   {
+    plugin: 'good',
+    options: {
+      ops: {
+        interval: 1000
+      },
+      reporters: {
+        myConsoleReporter: [
+          {
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ log: '*', request: '*', response: '*', error: '*' }]
+          },
+          {
+            module: 'good-console'
+          },
+          'stdout'
+        ]
+      }
+    }
+  },
+  {
     plugin: 'hapi-auth-jwt2'
   },
   {
