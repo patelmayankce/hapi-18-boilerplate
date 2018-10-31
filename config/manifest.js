@@ -7,8 +7,16 @@ const getArgument = argument => {
   return process.argv.indexOf(argument)
 }
 
+if (getArgument('--development') !== -1) {
+  process.env.NODE_ENV = 'development'
+}
+
+if (getArgument('--prod') !== -1) {
+  process.env.NODE_ENV = 'production'
+}
+
 if (getArgument('--development') !== -1 || getArgument('--prod') !== -1) {
-  process.env.NODE_CONFIG_DIR = '/var/www/hapi-17-boilerplate/config/'
+  process.env.NODE_CONFIG_DIR = `${__dirname}`
 }
 
 const config = require('config')

@@ -18,15 +18,19 @@ $ npm run start:local
 ## Run Application in Development Env
 
 ```
-$ npm start
+$ npm run start:dev
 ```
 OR
 ```
-$ npm start --development
+$ node server.js --development
 ```
 
 ## Run Application in Production Env
 
 ```
-$ npm start --prod
+$ npm run start:prod
+```
+OR
+```
+$ node server.js --prod
 ```
