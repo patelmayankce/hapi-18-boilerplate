@@ -69,6 +69,7 @@
     "mongoose-deep-populate": "^3.1.1",
     "mrhorse": "^3.0.1",
     "satelize": "^0.2.0",
+    "schmervice": "^1.0.0",
     "uuid": "^3.3.2",
     "vision": "^5.3.3",
     "zxcvbn": "^4.4.2"
@@ -80,6 +81,7 @@
     "@routes": "server/routes",
     "@utilities": "server/utilities",
     "@policies": "server/policies",
+    "@services": "server/services",
     "@api": "server/api"
   },
   "devDependencies": {

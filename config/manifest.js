@@ -110,6 +110,9 @@ plugins = plugins.concat([
     plugin: 'hapi-auth-basic'
   },
   {
+    plugin: 'schmervice'
+  },
+  {
     plugin: 'mrhorse',
     options: {
       policyDirectory: `${__dirname}/../server/policies`,

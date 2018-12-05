@@ -186,7 +186,11 @@ module.exports = {
     },
     pre: [],
     handler: async (request, h) => {
-      const user = await User.findById(request.auth.credentials.user._id)
+      const { userService } = request.server.services()
+
+      const user = await userService.getUserById(
+        request.auth.credentials.user._id
+      )
 
       return h.response(user)
     }
