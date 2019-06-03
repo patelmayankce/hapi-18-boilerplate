@@ -1,4 +1,4 @@
-# HAPI 17 Boilerplate
+# HAPI 18 Boilerplate
 
 after clone this project to your computer, run following commands to install project
 

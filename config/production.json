@@ -1,5 +1,5 @@
 {
-  "appName": "hapi-17-boilerplate",
+  "appName": "hapi-18-boilerplate",
   "port": 1400,
   "debug": {
     "request": [
@@ -13,6 +13,6 @@
     ]
   },
   "connections": {
-    "db": "mongodb://localhost:27017/hapi17"
+    "db": "mongodb://localhost:27017/hapi18"
   }
 }

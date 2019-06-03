@@ -26,7 +26,7 @@ const Config = JSON.parse(JSON.stringify(config))
 // REF: https://github.com/z0mt3c/hapi-swaggered , https://github.com/z0mt3c/hapi-swaggered-ui
 let swaggeredOptions = {
   info: {
-    title: 'Hapi-17-boilerplate',
+    title: 'Hapi-18-boilerplate',
     version: require('../package.json').version
   },
   stripPrefix: '/v1',
@@ -68,7 +68,7 @@ if (ENV !== PRODUCTION) {
     {
       plugin: 'hapi-swaggered-ui',
       options: {
-        title: 'Hapi-17-boilerplate',
+        title: 'Hapi-18-boilerplate',
         path: '/docs'
       }
     },
