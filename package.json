@@ -44,6 +44,7 @@
   },
   "homepage": "https://github.com/patelmayankce/hapi-18-boilerplate#readme",
   "dependencies": {
+    "@hapi/hapi": "^18.3.1",
     "bcrypt": "^3.0.6",
     "bluebird": "^3.5.5",
     "boom": "^7.3.0",
@@ -53,7 +54,6 @@
     "good": "^8.1.2",
     "good-console": "^8.0.0",
     "good-squeeze": "^5.1.0",
-    "hapi": "^18.1.0",
     "hapi-auth-basic": "^5.0.0",
     "hapi-auth-jwt2": "^8.6.1",
     "hapi-dev-errors": "^3.2.5",
