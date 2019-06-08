@@ -65,7 +65,7 @@
     "jsonwebtoken": "^8.5.1",
     "luxon": "^1.16.0",
     "module-alias": "^2.2.0",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.5.13",
     "mongoose-data-seed": "^1.0.7",
     "mongoose-deep-populate": "^3.1.1",
     "mrhorse": "^3.0.1",
@@ -96,11 +96,11 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^2.3.0",
+    "husky": "^2.4.0",
     "jest": "^24.8.0",
-    "lint-staged": "^8.1.7",
+    "lint-staged": "^8.2.0",
     "nodemon": "^1.19.1",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "rewire": "^4.0.1"
   }
 }
