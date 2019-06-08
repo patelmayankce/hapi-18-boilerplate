@@ -2,7 +2,7 @@
 
 require('module-alias/register')
 
-const Glue = require('glue')
+const Glue = require('@hapi/glue')
 const Glob = require('glob')
 const serverConfig = require('./config/manifest')
 

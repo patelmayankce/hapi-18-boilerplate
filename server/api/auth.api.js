@@ -1,8 +1,8 @@
 'use strict'
 
-const Joi = require('joi')
+const Joi = require('@hapi/joi')
 const config = require('config')
-const Boom = require('boom')
+const Boom = require('@hapi/boom')
 
 const errorHelper = require('@utilities/error-helper')
 const Token = require('@utilities/create-token')

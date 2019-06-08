@@ -56,10 +56,10 @@ if (ENV !== DEFAULT) {
 if (ENV !== PRODUCTION) {
   plugins = [
     {
-      plugin: 'inert'
+      plugin: '@hapi/inert'
     },
     {
-      plugin: 'vision'
+      plugin: '@hapi/vision'
     },
     {
       plugin: 'hapi-swaggered',
@@ -83,7 +83,7 @@ if (ENV !== PRODUCTION) {
 }
 plugins = plugins.concat([
   {
-    plugin: 'good',
+    plugin: '@hapi/good',
     options: {
       ops: {
         interval: 1000
@@ -91,12 +91,12 @@ plugins = plugins.concat([
       reporters: {
         myConsoleReporter: [
           {
-            module: 'good-squeeze',
+            module: '@hapi/good-squeeze',
             name: 'Squeeze',
             args: [{ log: '*', request: '*', response: '*', error: '*' }]
           },
           {
-            module: 'good-console'
+            module: '@hapi/good-console'
           },
           'stdout'
         ]
@@ -107,7 +107,7 @@ plugins = plugins.concat([
     plugin: 'hapi-auth-jwt2'
   },
   {
-    plugin: 'hapi-auth-basic'
+    plugin: '@hapi/basic'
   },
   {
     plugin: 'schmervice'
