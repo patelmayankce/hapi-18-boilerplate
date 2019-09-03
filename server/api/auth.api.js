@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
-const Joi = require('@hapi/joi')
-const config = require('config')
-const Boom = require('@hapi/boom')
+const Joi = require('@hapi/joi');
+const config = require('config');
+const Boom = require('@hapi/boom');
 
-const errorHelper = require('@utilities/error-helper')
-const Token = require('@utilities/create-token')
+const errorHelper = require('@utilities/error-helper');
+const Token = require('@utilities/create-token');
 
-const User = require('@models/user.model').schema
+const User = require('@models/user.model').schema;
 
 module.exports = {
   login: {
@@ -20,73 +20,73 @@ module.exports = {
         password: Joi.string()
           .required()
           .trim()
-          .label('Password')
-      })
+          .label('Password'),
+      }),
     },
     pre: [
       {
         assign: 'user',
         method: async (request, h) => {
           try {
-            const username = request.payload.username
-            const password = request.payload.password
+            const username = request.payload.username;
+            const password = request.payload.password;
 
-            let user = await User.findByCredentials(username, password)
+            let user = await User.findByCredentials(username, password);
             if (user) {
-              return user
+              return user;
             } else {
               errorHelper.handleError(
-                Boom.badRequest('Wrong username or password')
-              )
+                Boom.badRequest('Wrong username or password'),
+              );
             }
           } catch (err) {
-            errorHelper.handleError(err)
+            errorHelper.handleError(err);
           }
-          return h.continue
-        }
+          return h.continue;
+        },
       },
       {
         assign: 'accessToken',
         method: (request, h) => {
-          return Token(request.pre.user, config.constants.EXPIRATION_PERIOD)
-        }
+          return Token(request.pre.user, config.constants.EXPIRATION_PERIOD);
+        },
       },
       {
         assign: 'emailVerified',
         method: (request, h) => {
           // TODO: Create Email service to send emails
-          return h.continue
-        }
+          return h.continue;
+        },
       },
       {
         assign: 'lastLogin',
         method: async (request, h) => {
           try {
-            const lastLogin = Date.now()
+            const lastLogin = Date.now();
             await User.findByIdAndUpdate(request.pre.user._id, {
-              lastLogin: lastLogin
-            })
-            return lastLogin
+              lastLogin: lastLogin,
+            });
+            return lastLogin;
           } catch (err) {
-            errorHelper.handleError(err)
+            errorHelper.handleError(err);
           }
 
-          return h.continue
-        }
-      }
+          return h.continue;
+        },
+      },
     ],
     handler: async (request, h) => {
-      let accessToken = request.pre.accessToken
-      let response = {}
+      let accessToken = request.pre.accessToken;
+      let response = {};
 
-      delete request.pre.user.password
+      delete request.pre.user.password;
 
       response = {
         user: request.pre.user,
-        accessToken
-      }
-      return h.response(response).code(200)
-    }
+        accessToken,
+      };
+      return h.response(response).code(200);
+    },
   },
   signup: {
     validate: {
@@ -117,8 +117,8 @@ module.exports = {
           .required()
           .trim()
           .valid(Joi.ref('password'))
-          .label('Compare Password')
-      })
+          .label('Compare Password'),
+      }),
     },
     pre: [
       {
@@ -126,73 +126,73 @@ module.exports = {
         method: async (request, h) => {
           try {
             let user = await User.findOne({
-              email: request.payload.email
-            })
+              email: request.payload.email,
+            });
             if (user) {
               errorHelper.handleError(
-                Boom.badRequest('Email address is already exist')
-              )
+                Boom.badRequest('Email address is already exist'),
+              );
             }
           } catch (err) {
-            errorHelper.handleError(err)
+            errorHelper.handleError(err);
           }
-          return h.continue
-        }
+          return h.continue;
+        },
       },
       {
         assign: 'uniquePhone',
         method: async (request, h) => {
           try {
             let user = await User.findOne({
-              phone: request.payload.phone
-            })
+              phone: request.payload.phone,
+            });
             if (user) {
               errorHelper.handleError(
-                Boom.badRequest('Phone number is already exist')
-              )
+                Boom.badRequest('Phone number is already exist'),
+              );
             }
           } catch (err) {
-            errorHelper.handleError(err)
+            errorHelper.handleError(err);
           }
-          return h.continue
-        }
+          return h.continue;
+        },
       },
       {
         assign: 'signup',
         method: async (request, h) => {
-          delete request.payload.cPassword
-          delete request.payload.agentCode
-          let userPayload = request.payload
+          delete request.payload.cPassword;
+          delete request.payload.agentCode;
+          let userPayload = request.payload;
           try {
-            let createdUser = await User.create(userPayload)
-            return createdUser
+            let createdUser = await User.create(userPayload);
+            return createdUser;
           } catch (err) {
-            errorHelper.handleError(err)
+            errorHelper.handleError(err);
           }
-        }
-      }
+        },
+      },
     ],
     handler: async (request, h) => {
-      return h.response(request.pre.signup).code(201)
-    }
+      return h.response(request.pre.signup).code(201);
+    },
   },
   me: {
     validate: {
       headers: Joi.object({
-        authorization: Joi.string()
+        authorization: Joi.string(),
       }).options({
-        allowUnknown: true
-      })
+        allowUnknown: true,
+      }),
     },
     pre: [],
     handler: async (request, h) => {
-      const { userService } = request.server.services()
+      const { userService } = request.server.services();
 
       const user = await userService.getUserById(
-        request.auth.credentials.user._id
-      )
+        request.auth.credentials.user._id,
+      );
 
-      return h.response(user)
-    }
-  }
-}
+      return h.response(user);
+    },
+  },
+};

@@ -1,33 +1,33 @@
-'use strict'
-const config = require('config')
+'use strict';
+const config = require('config');
 
 exports.plugin = {
   async register(server, options) {
     const jwtValidate = async (decodedToken, request, h) => {
-      const User = require('@models/user.model').schema
+      const User = require('@models/user.model').schema;
 
       let credentials = {
-        user: {}
-      }
-      let isValid = false
-      credentials.user = await User.findById(decodedToken.user._id)
+        user: {},
+      };
+      let isValid = false;
+      credentials.user = await User.findById(decodedToken.user._id);
       if (credentials.user) {
-        isValid = true
+        isValid = true;
       }
       // Authentication Code will be here
       return {
         isValid,
-        credentials
-      }
-    }
+        credentials,
+      };
+    };
 
     server.auth.strategy('auth', 'jwt', {
       key: config.constants.JWT_SECRET,
       validate: jwtValidate,
       verifyOptions: {
-        algorithms: ['HS256']
-      }
-    })
+        algorithms: ['HS256'],
+      },
+    });
 
     // Add helper method to get request ip
     const getIP = function(request) {
@@ -37,10 +37,10 @@ exports.plugin = {
         request.headers['x-real-ip'] ||
         request.headers['x-forwarded-for'] ||
         request.info.remoteAddress
-      )
-    }
-    server.method('getIP', getIP, {})
+      );
+    };
+    server.method('getIP', getIP, {});
   },
   name: 'auth',
-  version: require('../../package.json').version
-}
+  version: require('../../package.json').version,
+};

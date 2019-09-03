@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // Never take constants here
 module.exports = {
   plugin: {
@@ -10,19 +10,19 @@ module.exports = {
           config: {
             auth: null,
             plugins: {
-              policies: []
+              policies: [],
             },
             tags: [],
             handler: async (request, h) => {
               return h.response({
-                up: new Date().getTime() - request.server.info.started
-              })
-            }
-          }
-        }
-      ])
+                up: new Date().getTime() - request.server.info.started,
+              });
+            },
+          },
+        },
+      ]);
     },
     version: require('../../package.json').version,
-    name: 'root-routes'
-  }
-}
+    name: 'root-routes',
+  },
+};

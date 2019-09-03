@@ -1,34 +1,34 @@
-'use strict'
+'use strict';
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Joi = require('@hapi/joi')
+const Joi = require('@hapi/joi');
 
-const Bcrypt = require('bcrypt')
+const Bcrypt = require('bcrypt');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const Uuidv4 = require('uuid/v4')
+const Uuidv4 = require('uuid/v4');
 
-const Types = Schema.Types
+const Types = Schema.Types;
 
-const modelName = 'user'
+const modelName = 'user';
 
-const errorHelper = require('@utilities/error-helper')
+const errorHelper = require('@utilities/error-helper');
 
-const dbConn = require('@plugins/mongoose.plugin').plugin.dbConn()
+const dbConn = require('@plugins/mongoose.plugin').plugin.dbConn();
 
 const UserSchema = new Schema(
   {
     firstName: {
       type: Types.String,
       default: null,
-      canSearch: true
+      canSearch: true,
     },
     lastName: {
       type: Types.String,
       default: null,
-      canSearch: true
+      canSearch: true,
     },
     email: {
       type: Types.String,
@@ -36,30 +36,30 @@ const UserSchema = new Schema(
       unique: true,
       index: true,
       stringType: 'email',
-      canSearch: true
+      canSearch: true,
     },
     password: {
       type: Types.String,
       exclude: true,
-      required: true
+      required: true,
     },
     emailVerified: {
       type: Types.Boolean,
       allowOnUpdate: false,
-      default: false
+      default: false,
     },
     emailHash: {
       type: Types.String,
-      default: null
+      default: null,
     },
     passwordLastUpdated: {
       type: Types.Date,
-      default: null
+      default: null,
     },
     lastLogin: {
       type: Types.Date,
       default: null,
-      canSort: true
+      canSort: true,
     },
     phone: {
       type: Types.String,
@@ -67,97 +67,97 @@ const UserSchema = new Schema(
       minxlength: 10,
       required: true,
       unique: true,
-      index: true
-    }
+      index: true,
+    },
   },
   {
     collection: modelName,
     timestamps: true,
-    versionKey: false
-  }
-)
+    versionKey: false,
+  },
+);
 
 UserSchema.pre('save', async function(next) {
-  let user = this
+  let user = this;
   if (user.isNew) {
     // Set Password & hash before save it
-    const passHash = await user.generateHash(user.password)
-    user.password = passHash.hash
-    const emailHash = await user.generateHash()
-    user.emailHash = emailHash.hash
-    user.wasNew = true
+    const passHash = await user.generateHash(user.password);
+    user.password = passHash.hash;
+    const emailHash = await user.generateHash();
+    user.emailHash = emailHash.hash;
+    user.wasNew = true;
   }
-  next()
-})
+  next();
+});
 
 UserSchema.methods = {
   generateHash: async function(key) {
     try {
       if (key === undefined) {
-        key = Uuidv4()
+        key = Uuidv4();
       }
-      let salt = await Bcrypt.genSalt(10)
-      let hash = await Bcrypt.hash(key, salt)
+      let salt = await Bcrypt.genSalt(10);
+      let hash = await Bcrypt.hash(key, salt);
       return {
         key,
-        hash
-      }
+        hash,
+      };
     } catch (err) {
-      errorHelper.handleError(err)
+      errorHelper.handleError(err);
     }
-  }
-}
+  },
+};
 
 UserSchema.statics = {
   findByCredentials: async function(username, password) {
     try {
-      const self = this
+      const self = this;
 
       let query = {
-        email: username.toLowerCase()
-      }
+        email: username.toLowerCase(),
+      };
 
-      const emailValidate = Joi.validate(username, Joi.string().email())
+      const emailValidate = Joi.validate(username, Joi.string().email());
 
       if (emailValidate.error) {
         query = {
-          phone: username
-        }
+          phone: username,
+        };
       }
 
-      let mongooseQuery = self.findOne(query)
+      let mongooseQuery = self.findOne(query);
 
-      let user = await mongooseQuery.lean()
+      let user = await mongooseQuery.lean();
 
       if (!user) {
-        return false
+        return false;
       }
 
-      const source = user.password
+      const source = user.password;
 
-      let passwordMatch = await Bcrypt.compare(password, source)
+      let passwordMatch = await Bcrypt.compare(password, source);
       if (passwordMatch) {
-        return user
+        return user;
       }
     } catch (err) {
-      errorHelper.handleError(err)
+      errorHelper.handleError(err);
     }
   },
   generateHash: async function(key) {
     try {
       if (key === undefined) {
-        key = Uuidv4()
+        key = Uuidv4();
       }
-      let salt = await Bcrypt.genSalt(10)
-      let hash = await Bcrypt.hash(key, salt)
+      let salt = await Bcrypt.genSalt(10);
+      let hash = await Bcrypt.hash(key, salt);
       return {
         key,
-        hash
-      }
+        hash,
+      };
     } catch (err) {
-      errorHelper.handleError(err)
+      errorHelper.handleError(err);
     }
-  }
-}
+  },
+};
 
-exports.schema = dbConn.model(modelName, UserSchema)
+exports.schema = dbConn.model(modelName, UserSchema);

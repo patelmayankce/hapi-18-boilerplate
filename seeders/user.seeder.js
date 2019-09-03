@@ -1,5 +1,5 @@
-var Seeder = require('mongoose-data-seed').Seeder
-var User = require('../server/models/user.model')
+var Seeder = require('mongoose-data-seed').Seeder;
+var User = require('../server/models/user.model');
 
 var data = [
   {
@@ -8,19 +8,19 @@ var data = [
     email: 'admin@admin.com',
     password: 'admin@123',
     emailVerified: true,
-    phone: '0123456789'
-  }
-]
+    phone: '0123456789',
+  },
+];
 
 var UserSeeder = Seeder.extend({
   shouldRun: () => {
     return User.count()
       .exec()
-      .then(count => count === 0)
+      .then(count => count === 0);
   },
   run: () => {
-    return User.create(data)
-  }
-})
+    return User.create(data);
+  },
+});
 
-module.exports = UserSeeder
+module.exports = UserSeeder;

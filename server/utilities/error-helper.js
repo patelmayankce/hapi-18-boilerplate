@@ -1,15 +1,15 @@
-'use strict'
-let Boom = require('@hapi/boom')
+'use strict';
+let Boom = require('@hapi/boom');
 
 function handleError(err) {
   if (err.isBoom) {
-    throw err
+    throw err;
   } else {
-    console.error(err)
-    throw Boom.badImplementation(err)
+    console.error(err);
+    throw Boom.badImplementation(err);
   }
 }
 
 module.exports = {
-  handleError
-}
+  handleError,
+};

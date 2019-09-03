@@ -1,35 +1,35 @@
-'use strict'
+'use strict';
 
-const Jwt = require('jsonwebtoken')
-const config = require('config')
-const errorHelper = require('./error-helper')
+const Jwt = require('jsonwebtoken');
+const config = require('config');
+const errorHelper = require('./error-helper');
 
 function createToken(user, expirationPeriod) {
   try {
-    let token = {}
+    let token = {};
 
     const tokenUser = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      _id: user._id
-    }
+      _id: user._id,
+    };
 
     token = Jwt.sign(
       {
-        user: tokenUser
+        user: tokenUser,
       },
       config.constants.JWT_SECRET,
       {
         algorithm: 'HS256',
-        expiresIn: expirationPeriod
-      }
-    )
+        expiresIn: expirationPeriod,
+      },
+    );
 
-    return token
+    return token;
   } catch (err) {
-    errorHelper.handleError(err)
+    errorHelper.handleError(err);
   }
 }
 
-module.exports = createToken
+module.exports = createToken;

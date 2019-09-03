@@ -1,26 +1,26 @@
-require('module-alias/register')
-const mongooseLib = require('mongoose')
-const Users = require('./seeders/user.seeder')
+require('module-alias/register');
+const mongooseLib = require('mongoose');
+const Users = require('./seeders/user.seeder');
 
 const getArgument = argument => {
-  return process.argv.indexOf(argument)
-}
+  return process.argv.indexOf(argument);
+};
 
 if (getArgument('--development') !== -1) {
-  process.env.NODE_ENV = 'development'
+  process.env.NODE_ENV = 'development';
 }
 
 if (getArgument('--prod') !== -1) {
-  process.env.NODE_ENV = 'production'
+  process.env.NODE_ENV = 'production';
 }
 
 if (getArgument('--development') !== -1 || getArgument('--prod') !== -1) {
-  process.env.NODE_CONFIG_DIR = `${__dirname}`
+  process.env.NODE_CONFIG_DIR = `${__dirname}`;
 }
 
-const config = require('config')
+const config = require('config');
 
-mongooseLib.Promise = global.Promise || Promise
+mongooseLib.Promise = global.Promise || Promise;
 
 module.exports = {
   // Export the mongoose lib
@@ -35,6 +35,6 @@ module.exports = {
     order is important
   */
   seedersList: {
-    Users
-  }
-}
+    Users,
+  },
+};

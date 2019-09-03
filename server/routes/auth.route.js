@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 // Never take constants here
 module.exports = {
   plugin: {
     async register(server, options) {
-      const API = require('@api/auth.api')
+      const API = require('@api/auth.api');
       server.route([
         {
           method: 'POST',
@@ -11,15 +11,15 @@ module.exports = {
           config: {
             auth: null,
             plugins: {
-              policies: ['log.policy']
+              policies: ['log.policy'],
             },
             tags: ['api', 'Authentication'],
             description: 'Login',
             notes: 'Login',
             validate: API.login.validate,
             pre: API.login.pre,
-            handler: API.login.handler
-          }
+            handler: API.login.handler,
+          },
         },
         {
           method: 'POST',
@@ -27,15 +27,15 @@ module.exports = {
           config: {
             auth: null,
             plugins: {
-              policies: ['log.policy']
+              policies: ['log.policy'],
             },
             tags: ['api', 'Authentication'],
             description: 'Signup',
             notes: 'Signup',
             validate: API.signup.validate,
             pre: API.signup.pre,
-            handler: API.signup.handler
-          }
+            handler: API.signup.handler,
+          },
         },
         {
           method: 'GET',
@@ -47,22 +47,22 @@ module.exports = {
               'hapi-swaggered': {
                 security: [
                   {
-                    ApiKeyAuth: []
-                  }
-                ]
-              }
+                    ApiKeyAuth: [],
+                  },
+                ],
+              },
             },
             tags: ['api', 'Authentication'],
             description: 'me',
             notes: 'me',
             validate: API.me.validate,
             pre: API.me.pre,
-            handler: API.me.handler
-          }
-        }
-      ])
+            handler: API.me.handler,
+          },
+        },
+      ]);
     },
     version: require('../../package.json').version,
-    name: 'auth-routes'
-  }
-}
+    name: 'auth-routes',
+  },
+};
