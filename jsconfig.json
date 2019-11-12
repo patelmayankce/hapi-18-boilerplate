@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "lib": [
+      "es2017"
+    ],
+    "baseUrl": ".",
+    "module": "commonjs",
+    "paths": {
+      "@models/*": [
+        "server/models/*"
+      ],
+      "@plugins/*": [
+        "server/plugins/*"
+      ],
+      "@routes/*": [
+        "server/routes/*"
+      ],
+      "@utilities/*": [
+        "server/utilities/*"
+      ],
+      "@policies/*": [
+        "server/policies/*"
+      ],
+      "@services/*": [
+        "server/services/*"
+      ],
+      "@api/*": [
+        "server/api/*"
+      ]
+    }
+  }
+}
