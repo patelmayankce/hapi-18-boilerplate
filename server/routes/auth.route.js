@@ -8,7 +8,7 @@ module.exports = {
         {
           method: 'POST',
           path: '/login',
-          config: {
+          options: {
             auth: null,
             plugins: {
               policies: ['log.policy'],
@@ -24,7 +24,7 @@ module.exports = {
         {
           method: 'POST',
           path: '/signup',
-          config: {
+          options: {
             auth: null,
             plugins: {
               policies: ['log.policy'],
@@ -40,11 +40,11 @@ module.exports = {
         {
           method: 'GET',
           path: '/me',
-          config: {
+          options: {
             auth: 'auth',
             plugins: {
               policies: [],
-              'hapi-swaggered': {
+              'hapi-swagger': {
                 security: [
                   {
                     ApiKeyAuth: [],

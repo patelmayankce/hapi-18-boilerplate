@@ -24,16 +24,16 @@ const mongoose = require('mongoose');
 const Config = JSON.parse(JSON.stringify(config));
 
 // REF: https://github.com/z0mt3c/hapi-swaggered , https://github.com/z0mt3c/hapi-swaggered-ui
-let swaggeredOptions = {
+let swaggerOptions = {
   info: {
     title: 'Hapi-18-boilerplate',
     version: require('../package.json').version,
   },
-  stripPrefix: '/v1',
+  basePath: '/v1',
+  documentationPath: '/docs',
+  expanded: 'none',
   tags: [],
-  tagging: {
-    mode: 'tags',
-  },
+  grouping: 'tags',
   securityDefinitions: {
     ApiKeyAuth: {
       type: 'apiKey',
@@ -49,8 +49,8 @@ let plugins = [];
 const ENV = config.util.getEnv('NODE_ENV').trim();
 
 if (ENV !== DEFAULT) {
-  swaggeredOptions.schemes = ['https', 'http'];
-  swaggeredOptions.host = 'productionurl.com';
+  swaggerOptions.schemes = ['https', 'http'];
+  swaggerOptions.host = 'productionurl.com';
   mongoose.set('debug', true);
 }
 if (ENV !== PRODUCTION) {
@@ -62,15 +62,8 @@ if (ENV !== PRODUCTION) {
       plugin: '@hapi/vision',
     },
     {
-      plugin: 'hapi-swaggered',
-      options: swaggeredOptions,
-    },
-    {
-      plugin: 'hapi-swaggered-ui',
-      options: {
-        title: 'Hapi-18-boilerplate',
-        path: '/docs',
-      },
+      plugin: 'hapi-swagger',
+      options: swaggerOptions,
     },
     {
       plugin: 'hapi-dev-errors',

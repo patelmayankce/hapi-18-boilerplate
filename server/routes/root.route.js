@@ -7,7 +7,7 @@ module.exports = {
         {
           method: 'GET',
           path: '/',
-          config: {
+          options: {
             auth: null,
             plugins: {
               policies: [],
