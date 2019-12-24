@@ -7,25 +7,25 @@
     "baseUrl": ".",
     "module": "commonjs",
     "paths": {
-      "@models/*": [
+      "models/*": [
         "server/models/*"
       ],
-      "@plugins/*": [
+      "plugins/*": [
         "server/plugins/*"
       ],
-      "@routes/*": [
+      "routes/*": [
         "server/routes/*"
       ],
-      "@utilities/*": [
+      "utilities/*": [
         "server/utilities/*"
       ],
-      "@policies/*": [
+      "policies/*": [
         "server/policies/*"
       ],
-      "@services/*": [
+      "services/*": [
         "server/services/*"
       ],
-      "@api/*": [
+      "api/*": [
         "server/api/*"
       ]
     }

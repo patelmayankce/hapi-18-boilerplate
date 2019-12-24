@@ -3,7 +3,7 @@
 module.exports = {
   plugin: {
     async register(server, options) {
-      const API = require('@api/auth.api');
+      const API = require('api/auth.api');
       server.route([
         {
           method: 'POST',

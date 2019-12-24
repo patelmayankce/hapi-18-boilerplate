@@ -1,10 +1,10 @@
 'use strict';
 const config = require('config');
 
-exports.plugin = {
+module.exports.plugin = {
   async register(server, options) {
     const jwtValidate = async (decodedToken, request, h) => {
-      const User = require('@models/user.model').schema;
+      const User = require('models/user.model').schema;
 
       let credentials = {
         user: {},

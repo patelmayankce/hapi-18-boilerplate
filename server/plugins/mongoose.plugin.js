@@ -7,7 +7,7 @@ db.Promise = require('bluebird');
 
 let dbConn = null;
 
-exports.plugin = {
+module.exports.plugin = {
   async register(server, options) {
     try {
       dbConn = await db.createConnection(options.connections.db);

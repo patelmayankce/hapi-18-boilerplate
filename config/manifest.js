@@ -145,7 +145,7 @@ routes.forEach(r => {
   ]);
 });
 
-exports.manifest = {
+module.exports.manifest = {
   server: {
     router: {
       stripTrailingSlash: true,
@@ -184,4 +184,4 @@ exports.manifest = {
   },
 };
 
-exports.options = {};
+module.exports.options = {};

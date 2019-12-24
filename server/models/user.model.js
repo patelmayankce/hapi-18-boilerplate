@@ -14,9 +14,9 @@ const Types = Schema.Types;
 
 const modelName = 'user';
 
-const errorHelper = require('@utilities/error-helper');
+const errorHelper = require('utilities/error-helper');
 
-const dbConn = require('@plugins/mongoose.plugin').plugin.dbConn();
+const dbConn = require('plugins/mongoose.plugin').plugin.dbConn();
 
 const UserSchema = new Schema(
   {
@@ -160,4 +160,4 @@ UserSchema.statics = {
   },
 };
 
-exports.schema = dbConn.model(modelName, UserSchema);
+module.exports.schema = dbConn.model(modelName, UserSchema);
