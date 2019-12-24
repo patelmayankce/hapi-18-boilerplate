@@ -114,17 +114,17 @@ plugins = plugins.concat([
     },
   },
   {
-    plugin: '@plugins/mongoose.plugin',
+    plugin: 'plugins/mongoose.plugin',
     options: {
       connections: Config.connections,
     },
   },
   {
     // if you need authentication then uncomment this plugin, and remove "auth: false" below
-    plugin: '@plugins/auth.plugin',
+    plugin: 'plugins/auth.plugin',
   },
   {
-    plugin: '@routes/root.route',
+    plugin: 'routes/root.route',
   },
 ]);
 
@@ -137,7 +137,7 @@ const routes = Object.keys(routesOb);
 routes.forEach(r => {
   plugins = plugins.concat([
     {
-      plugin: `@routes/${r}`,
+      plugin: `routes/${r}`,
       routes: {
         prefix: `/v1${routesOb[r] ? `/${routesOb[r]}` : ``}`,
       },
