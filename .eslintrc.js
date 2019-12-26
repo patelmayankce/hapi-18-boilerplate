@@ -1,11 +1,11 @@
 // http://eslint.org/docs/user-guide/configuring
-const path = require('path')
 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    "ecmaVersion": 2020
+    sourceType: 'module',
+    "ecmaVersion": 2020,
   },
   env: {
     browser: true,
@@ -19,6 +19,13 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
+    // allow paren-less arrow functions
+    'arrow-parens': 0,
+    // allow async-await
+    'generator-star-spacing': 0,
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'prettier/prettier': 'error',
     // Solution: https://github.com/ilearnio/module-alias/issues/48#issuecomment-541357005
     "node/no-missing-require": ["error", {
       "allowModules": ["models", "plugins", "utilities", "policies", "services", "routes", "schemas", "api"],
@@ -37,5 +44,5 @@ module.exports = {
     "no-empty": "off",
     "no-process-exit": "off",
     "no-unused-vars": "warn",
-  }
+  },
 };
