@@ -45,7 +45,11 @@ let swaggerOptions = {
 
 const DEFAULT = 'default';
 
-let plugins = [];
+let plugins = [
+  {
+    plugin: '@hapi/inert',
+  },
+];
 const ENV = config.util.getEnv('NODE_ENV').trim();
 
 if (ENV !== DEFAULT) {
@@ -54,10 +58,7 @@ if (ENV !== DEFAULT) {
   mongoose.set('debug', true);
 }
 if (ENV !== PRODUCTION) {
-  plugins = [
-    {
-      plugin: '@hapi/inert',
-    },
+  plugins = plugins.concat([
     {
       plugin: '@hapi/vision',
     },
@@ -72,7 +73,7 @@ if (ENV !== PRODUCTION) {
         toTerminal: true,
       },
     },
-  ];
+  ]);
 }
 plugins = plugins.concat([
   {

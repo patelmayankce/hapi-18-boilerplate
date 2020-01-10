@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  hapi18:
+    build: .
+    command: node server.js
+    container_name: hapi18
+    restart: always
+    ports:
+      - "1400:1400"
+    environment:
+      - NODE_ENV=default
+      - PORT=1400
+      - DATABASE_CONNECTION=mongodb://localhost:27017/hapi18
