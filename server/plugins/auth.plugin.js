@@ -30,7 +30,7 @@ module.exports.plugin = {
     });
 
     // Add helper method to get request ip
-    const getIP = function(request) {
+    const getIP = function (request) {
       // We check the headers first in case the server is behind a reverse proxy.
       // see: https://ypereirareis.github.io/blog/2017/02/15/nginx-real-ip-behind-nginx-reverse-proxy/
       return (

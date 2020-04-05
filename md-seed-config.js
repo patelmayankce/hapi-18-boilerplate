@@ -2,7 +2,7 @@ require('module-alias/register');
 const mongooseLib = require('mongoose');
 const Users = require('./seeders/user.seeder');
 
-const getArgument = argument => {
+const getArgument = (argument) => {
   return process.argv.indexOf(argument);
 };
 

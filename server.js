@@ -16,13 +16,10 @@ const options = {
 // Start server
 const startServer = async () => {
   try {
-    const server = await Glue.compose(
-      serverConfig.manifest,
-      options,
-    );
+    const server = await Glue.compose(serverConfig.manifest, options);
 
     const services = Glob.sync('server/services/*.js');
-    services.forEach(service => {
+    services.forEach((service) => {
       server.registerService(require(`${process.cwd()}/${service}`));
     });
 

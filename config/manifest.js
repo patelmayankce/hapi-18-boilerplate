@@ -3,7 +3,7 @@
 // const DEVELOPMENT = 'development'
 const PRODUCTION = 'production';
 
-const getArgument = argument => {
+const getArgument = (argument) => {
   return process.argv.indexOf(argument);
 };
 
@@ -135,7 +135,7 @@ const routesOb = {
 
 const routes = Object.keys(routesOb);
 
-routes.forEach(r => {
+routes.forEach((r) => {
   plugins = plugins.concat([
     {
       plugin: `routes/${r}`,

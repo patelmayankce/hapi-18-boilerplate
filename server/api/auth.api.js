@@ -13,14 +13,8 @@ module.exports = {
   login: {
     validate: {
       payload: Joi.object().keys({
-        username: Joi.string()
-          .required()
-          .trim()
-          .label('Username'),
-        password: Joi.string()
-          .required()
-          .trim()
-          .label('Password'),
+        username: Joi.string().required().trim().label('Username'),
+        password: Joi.string().required().trim().label('Password'),
       }),
     },
     pre: [
@@ -91,28 +85,11 @@ module.exports = {
   signup: {
     validate: {
       payload: Joi.object().keys({
-        firstName: Joi.string()
-          .required()
-          .trim()
-          .label('First Name'),
-        lastName: Joi.string()
-          .required()
-          .trim()
-          .label('Last Name'),
-        email: Joi.string()
-          .email()
-          .required()
-          .trim()
-          .label('Email'),
-        phone: Joi.string()
-          .trim()
-          .min(10)
-          .max(12)
-          .label('Phone Number'),
-        password: Joi.string()
-          .required()
-          .trim()
-          .label('Password'),
+        firstName: Joi.string().required().trim().label('First Name'),
+        lastName: Joi.string().required().trim().label('Last Name'),
+        email: Joi.string().email().required().trim().label('Email'),
+        phone: Joi.string().trim().min(10).max(12).label('Phone Number'),
+        password: Joi.string().required().trim().label('Password'),
         cPassword: Joi.string()
           .required()
           .trim()

@@ -36,7 +36,7 @@ module.exports.plugin = {
 
       // Load models
       const models = Glob.sync('server/models/*.js');
-      models.forEach(model => {
+      models.forEach((model) => {
         require(`${process.cwd()}/${model}`);
       });
     } catch (err) {
